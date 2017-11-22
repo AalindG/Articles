@@ -1,0 +1,15 @@
+extends layout
+
+block content
+	div
+		h2 Login!!
+		//- div.form-group
+		form(method="POST" action="/users/login" )
+			div.form-group
+				label UserName
+				input(class="form-control form-control-sm col-sm-3" name="username" placeholder="Username here..")
+			div.form-group
+				label Password
+				input(type="password" class="form-control form-control-sm col-sm-3" name="password" placeholder="Your Password..")
+			br
+			input(type="submit" value="Login!" class="btn btn-primary")

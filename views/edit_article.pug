@@ -1,0 +1,20 @@
+extends layout
+
+block content
+	div
+		h2 #{title}
+		//- div.form-group
+		form(method="POST" action="/articles/edit/"+article._id )
+			div.form-group
+				label Enter Title
+				input(placeholder="title here.." name="title" value=article.title class="form-control col-sm-4" )
+			div.form-group
+				label Body Content
+				input(class="form-control form-control-sm col-sm-3" name="body" 
+				value=article.body placeholder="content here..")
+			div.form-group
+				label.form-check-label.
+					#[input(type="checkbox" class="form-check-input" required="true")]
+					I agree to the terms and conditions
+			input(type="submit" value="Save Changes" class="btn btn-primary")
+		

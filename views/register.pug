@@ -1,0 +1,34 @@
+extends layout
+
+block content
+	div
+		h2 Register!!
+		//- div.form-group
+		form(method="POST" action="/users/register" )
+			div.form-group
+				label Enter Name
+				input(placeholder="Your Name" name="name" class="form-control col-sm-4" )
+			div.form-group
+				label Email:
+				input(type="email" class="form-control form-control-sm col-sm-3" name="email" placeholder="Your Email..")
+			div.form-group
+				label UserName
+				input(class="form-control form-control-sm col-sm-3" name="username" placeholder="Username here..")
+			div.form-group
+				label Password
+				input(type="password" class="form-control form-control-sm col-sm-3" name="password" placeholder="Your Password..")
+			div.form-group
+				label Confirm Password
+				input(type="password" class="form-control form-control-sm col-sm-3" name="password2" placeholder="Your Password..")
+			div.form-group
+				label.form-check-label.
+					#[input(type="checkbox" class="form-check-input" required="true")]
+					I agree to the terms and conditions before signing up!
+			input(type="submit" value="Register Yourself!" class="btn btn-primary")
+		//- br
+		//- hr
+		//- h2 Your Articles
+		//- div
+		//- 	ul.list-group
+		//- 	each article in articles
+		//- 		li.list-group-item= article.title

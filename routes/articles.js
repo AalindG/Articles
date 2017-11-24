@@ -81,14 +81,19 @@ router.get('/:id', function(req, res){
 
 // edit article
 router.get('/edit/:id', function(req, res){
-	console.log(req.user)
+	// console.log(req.user)
 	req.checkBody('title', 'Title is required').notEmpty();
 	// req.checkBody('author', 'Author Name is required').notEmpty();
 	req.checkBody('body', 'Context is a must').notEmpty();
 
 	let errors = req.validationErrors();
 	Article.findById(req.params.id, function(err,article){
-		if(article.author != req.user.id){
+		console.log('req.user: ', req.user)
+		if(req.user == undefined){
+			res.redirect('/users/login');
+		}
+		else if(article.author != req.user.id){
+			console.log('Getting jsut the id:', req.user.id)
 			req.flash('danger', "You're not authenticated to edit this article");
 			res.redirect('/')
 		}

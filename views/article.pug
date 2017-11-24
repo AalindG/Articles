@@ -8,8 +8,11 @@ block content
 		footer
 			| written by:  #[cite(title='Source Title') #{author}]
 
-	hr
 	if user
 		if user.id == article.author
 			a.btn.btn-default(style="margin:5px" href="/articles/edit/"+article._id) Edit this article
 			a.btn.btn-danger.delete-article(href="#" data-id=article._id) Delete this article
+		if user.id != article.author
+			footer 
+				cite 'cannot make any changes'
+	hr

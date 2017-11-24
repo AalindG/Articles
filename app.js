@@ -2,6 +2,7 @@
 // import modules //
 ////////////////////
 const express = require('express');
+// const session = require('client-sessions');
 const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -46,6 +47,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
 app.use(bodyParser.json());
+
+
 
 ////////////////////////
 // Express validation //
@@ -105,6 +108,16 @@ require('./config/passport')(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+//////////////////////////////////////
+// caching disabled for every route //
+//////////////////////////////////////
+app.use(function(req, res, next) {
+  res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+  next();
+});
+
+
 ///////////////////////////////////////////////////////////////////
 // Setting up Global variable to check if we're logged in or not //
 ///////////////////////////////////////////////////////////////////
@@ -122,7 +135,7 @@ app.get('*', (req,res,next)=>{
 app.get('/', (req, res)=>{
 	// get data from models defined above
 	Article.find({}, function(err, articles){
-		console.log('Articles ',articles);
+		// console.log('Articles ',articles);
 		User.findById(articles.author, function(err, user){
 			if(err){
 				console.log('Error on home page: ', err);
@@ -137,6 +150,8 @@ app.get('/', (req, res)=>{
 		})
 	});
 });
+
+
 
 ////////////////////////////////////////////////////////////////////////
 // Setting up routes from Route File, and then using it as middleware //

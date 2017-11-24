@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+// const session = require('client-sessions');
 // getting bcrypt to encrypt our form
 const bcrypt = require('bcryptjs')
 const passport = require('passport');
@@ -80,6 +81,10 @@ router.post('/login', (req,res,next)=>{
 router.get('/logout', function(req,res){
 	req.logout();
 	req.flash('success', "You've been successfully logged out!")
+	req.session.destroy((err)=>{
+		console.error(err);
+	});
+
 	res.redirect('/users/login')
 })
 

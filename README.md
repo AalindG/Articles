@@ -7,7 +7,7 @@ its frameworks like Express, body-parser, etc..
 # Installation
 - Clone/download this project.
 - Run `npm install` in the command line.
-- Start the server using `node server.js` or simply using nodemon
+- Start the server using `node app.js` or simply using nodemon
 - Check on port 3000
 
 # Global Dependencies
